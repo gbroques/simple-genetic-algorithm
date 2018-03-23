@@ -54,6 +54,14 @@ class TestCreator(unittest.TestCase):
         parent = self._creator._select_parent()
         self.assertEqual(expected_parent, parent)
 
+    def test_select_parents(self):
+        seed(1)
+        first_parent, second_parent = self._creator._select_parents()
+        expected_first_parent = '01111'
+        expected_second_parent = '11100'
+        self.assertEqual(expected_first_parent, first_parent)
+        self.assertEqual(expected_second_parent, second_parent)
+
 
 if __name__ == '__main__':
     unittest.main()
