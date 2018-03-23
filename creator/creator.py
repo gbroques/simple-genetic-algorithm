@@ -53,3 +53,11 @@ class Creator:
             else:
                 child += parent2[i]
         return child
+
+    def _mutate(self, child: str) -> str:
+        for i in range(self._string_size):
+            should_mutate = randint(0, self._string_size)
+            if should_mutate == 1:
+                mutated_bit = '0' if child[i] == '1' else '1'
+                child = child[0:i] + mutated_bit + child[i + 1:]
+        return child
