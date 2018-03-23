@@ -44,6 +44,12 @@ class TestCreator(unittest.TestCase):
         random_individual = self._creator._select_random_individual()
         self.assertEqual('10110', random_individual)
 
+    def test_select_two_random_individuals(self):
+        seed(1)
+        first, second = self._creator._select_two_random_individuals()
+        self.assertEqual('10110', first)
+        self.assertEqual('01111', second)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -27,3 +27,8 @@ class Creator:
     def _select_random_individual(self):
         index = randint(0, self._population_size - 1)
         return self._population[index]
+
+    def _select_two_random_individuals(self):
+        first_individual = self._select_random_individual()
+        second_individual = self._select_random_individual()
+        return first_individual, second_individual
