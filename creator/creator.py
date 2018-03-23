@@ -8,8 +8,8 @@ class Creator:
         self._population_size = population_size
         self._string_size = string_size
 
-    def _create_population(self, size):
-        for i in range(size):
+    def _create_population(self):
+        for i in range(self._population_size):
             binary_string = self._create_binary_string(self._string_size)
             self._population.append(binary_string)
 
@@ -23,3 +23,7 @@ class Creator:
     @staticmethod
     def _fitness(binary_string):
         return binary_string.count('1')
+
+    def _select_random_individual(self):
+        index = randint(0, self._population_size - 1)
+        return self._population[index]

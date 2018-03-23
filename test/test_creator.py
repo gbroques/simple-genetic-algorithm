@@ -8,17 +8,20 @@ class TestCreator(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls._creator = Creator(population_size=3, string_size=5)
+        seed(1)
+        cls._creator = Creator(population_size=10, string_size=5)
+        cls._creator._create_population()
 
     def test_create_population(self):
+        population_size = 3
+        creator = Creator(population_size=population_size, string_size=5)
         expected_population = ['00101', '11100', '10110']
-        length = 3
 
         seed(1)
-        self._creator._create_population(length)
+        creator._create_population()
 
-        population = self._creator._population
-        self.assertEqual(length, len(population))
+        population = creator._population
+        self.assertEqual(population_size, len(population))
         self.assertEqual(expected_population, population)
 
     def test_create_binary_string(self):
@@ -35,6 +38,11 @@ class TestCreator(unittest.TestCase):
         self.assertEqual(3, self._creator._fitness('01101'))
         self.assertEqual(5, self._creator._fitness('11111'))
         self.assertEqual(1, self._creator._fitness('00001'))
+
+    def test_select_random_individual(self):
+        seed(1)
+        random_individual = self._creator._select_random_individual()
+        self.assertEqual('10110', random_individual)
 
 
 if __name__ == '__main__':
