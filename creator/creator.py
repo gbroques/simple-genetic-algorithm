@@ -1,5 +1,5 @@
 from random import randint
-from typing import List, Tuple
+from typing import List
 
 
 class Creator:
@@ -22,28 +22,6 @@ class Creator:
         for i in range(size):
             binary_string += str(randint(0, 1))
         return binary_string
-
-    @staticmethod
-    def _fitness(binary_string: str) -> int:
-        return binary_string.count('1')
-
-    def _select_parents(self) -> Tuple[str, str]:
-        first_parent = self._select_parent()
-        second_parent = self._select_parent()
-        return first_parent, second_parent
-
-    def _select_parent(self) -> str:
-        a, b = self._select_two_random_individuals()
-        return a if self._fitness(a) >= self._fitness(b) else b
-
-    def _select_two_random_individuals(self) -> Tuple[str, str]:
-        first_individual = self._select_random_individual()
-        second_individual = self._select_random_individual()
-        return first_individual, second_individual
-
-    def _select_random_individual(self) -> str:
-        index = randint(0, self._population_size - 1)
-        return self._population[index]
 
     def _uniform_crossover(self, parent1: str, parent2: str) -> str:
         child = ''
