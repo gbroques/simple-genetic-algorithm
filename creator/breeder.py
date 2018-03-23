@@ -1,9 +1,19 @@
 from random import randint
+from typing import Tuple
 
 
 class Breeder:
     def __init__(self, string_size):
         self._string_size = string_size
+
+    def breed(self, parent1: str, parent2: str) -> Tuple[str, str]:
+        num = randint(1, 10)
+        if num <= 4:
+            child1, child2 = parent1, parent2
+        else:
+            child1 = self._uniform_crossover(parent1, parent2)
+            child2 = self._uniform_crossover(parent1, parent2)
+        return self._mutate(child1), self._mutate(child2)
 
     def _uniform_crossover(self, parent1: str, parent2: str) -> str:
         child = ''

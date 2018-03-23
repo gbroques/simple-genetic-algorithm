@@ -10,6 +10,12 @@ class TestBreeder(unittest.TestCase):
     def setUpClass(cls):
         cls._breeder = Breeder(5)
 
+    def test_breed(self):
+        seed(10)  # Seed with 10 to apply uniform crossover operator
+        expected_children = ('01010', '01010')
+        children = self._breeder.breed('01010', '00111')
+        self.assertEqual(expected_children, children)
+
     def test_uniform_crossover(self):
         seed(1)
         expected_child = '10001'
