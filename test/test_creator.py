@@ -32,18 +32,6 @@ class TestCreator(unittest.TestCase):
         self.assertEqual(length, len(binary_string))
         self.assertEqual(expected_binary_string, binary_string)
 
-    def test_uniform_crossover(self):
-        seed(1)
-        expected_child = '10001'
-        child = self._creator._uniform_crossover('01011', '10100')
-        self.assertEqual(expected_child, child)
-
-    def test_mutate(self):
-        seed(1)
-        expected_child = '00100'
-        child = self._creator._mutate('10100')
-        self.assertEqual(expected_child, child)
-
 
 if __name__ == '__main__':
     unittest.main()
