@@ -19,3 +19,7 @@ class Creator:
         for i in range(size):
             binary_string += str(randint(0, 1))
         return binary_string
+
+    @staticmethod
+    def _fitness(binary_string):
+        return binary_string.count('1')

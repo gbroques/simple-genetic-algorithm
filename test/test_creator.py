@@ -31,6 +31,11 @@ class TestCreator(unittest.TestCase):
         self.assertEqual(length, len(binary_string))
         self.assertEqual(expected_binary_string, binary_string)
 
+    def test_fitness(self):
+        self.assertEqual(3, self._creator._fitness('01101'))
+        self.assertEqual(5, self._creator._fitness('11111'))
+        self.assertEqual(1, self._creator._fitness('00001'))
+
 
 if __name__ == '__main__':
     unittest.main()
