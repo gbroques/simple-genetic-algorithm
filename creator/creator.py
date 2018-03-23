@@ -44,3 +44,12 @@ class Creator:
     def _select_random_individual(self) -> str:
         index = randint(0, self._population_size - 1)
         return self._population[index]
+
+    def _uniform_crossover(self, parent1: str, parent2: str) -> str:
+        child = ''
+        for i in range(self._string_size):
+            if randint(0, 1):
+                child += parent1[i]
+            else:
+                child += parent2[i]
+        return child

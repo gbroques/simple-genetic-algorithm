@@ -62,6 +62,12 @@ class TestCreator(unittest.TestCase):
         self.assertEqual(expected_first_parent, first_parent)
         self.assertEqual(expected_second_parent, second_parent)
 
+    def test_uniform_crossover(self):
+        seed(1)
+        expected_child = '10001'
+        child = self._creator._uniform_crossover('01011', '10100')
+        self.assertEqual(expected_child, child)
+
 
 if __name__ == '__main__':
     unittest.main()
