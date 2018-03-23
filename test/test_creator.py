@@ -13,12 +13,10 @@ class TestCreator(unittest.TestCase):
         cls._creator._create_population()
 
     def test_create_population(self):
+        seed(1)
         population_size = 3
         creator = Creator(population_size=population_size, string_size=5)
         expected_population = ['00101', '11100', '10110']
-
-        seed(1)
-        creator._create_population()
 
         population = creator._population
         self.assertEqual(population_size, len(population))
@@ -49,6 +47,12 @@ class TestCreator(unittest.TestCase):
         first, second = self._creator._select_two_random_individuals()
         self.assertEqual('10110', first)
         self.assertEqual('01111', second)
+
+    def test_select_parent(self):
+        seed(1)
+        expected_parent = '01111'
+        parent = self._creator._select_parent()
+        self.assertEqual(expected_parent, parent)
 
 
 if __name__ == '__main__':
