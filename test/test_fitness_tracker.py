@@ -8,11 +8,12 @@ class TestFitnessTracker(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        population = [Individual('10101'), Individual('11000'), Individual('01111')]
+        population = [Individual('10101'), Individual('1100'), Individual('01111')]
         cls._fitness_tracker = FitnessTracker(population)
 
-    def test_something(self):
-        self.assertEqual(True, True)
+    def test_average_fitness(self):
+        expected_average_fitness = 3
+        self.assertEqual(expected_average_fitness, self._fitness_tracker.get_average_fitness())
 
 
 if __name__ == '__main__':
