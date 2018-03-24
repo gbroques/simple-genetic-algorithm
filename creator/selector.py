@@ -4,6 +4,7 @@ from typing import Tuple
 
 
 class Selector:
+
     def __init__(self, population: List[str]):
         self._population = population
 

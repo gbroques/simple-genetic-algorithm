@@ -3,6 +3,7 @@ from typing import Tuple
 
 
 class Breeder:
+
     def __init__(self, string_size):
         self._string_size = string_size
 

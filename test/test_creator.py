@@ -32,6 +32,13 @@ class TestCreator(unittest.TestCase):
         self.assertEqual(length, len(binary_string))
         self.assertEqual(expected_binary_string, binary_string)
 
+    def test_select_pairs_of_parents(self):
+        expected_pairs_of_parents = [('10110', '01111'),
+                                     ('11100', '00101'),
+                                     ('11100', '11010')]
+        pairs_of_parents = self._creator._select_pairs_of_parents(3)
+        self.assertEqual(expected_pairs_of_parents, pairs_of_parents)
+
 
 if __name__ == '__main__':
     unittest.main()
