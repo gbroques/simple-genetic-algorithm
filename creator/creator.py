@@ -3,6 +3,7 @@ from typing import List
 from typing import Tuple
 
 from .breeder import Breeder
+from .individual import Individual
 from .selector import Selector
 
 
@@ -15,19 +16,19 @@ class Creator:
         self._selector = Selector(self._population)
         self._breeder = Breeder(self._string_size)
 
-    def _create_population(self) -> List[str]:
+    def _create_population(self) -> List[Individual]:
         population = []
         for i in range(self._population_size):
-            binary_string = self._create_binary_string(self._string_size)
-            population.append(binary_string)
+            individual = self._create_individual(self._string_size)
+            population.append(individual)
         return population
 
     @staticmethod
-    def _create_binary_string(size: int) -> str:
+    def _create_individual(size: int) -> Individual:
         binary_string = ''
         for i in range(size):
             binary_string += str(randint(0, 1))
-        return binary_string
+        return Individual(binary_string)
 
     def _replace_population(self):
         # Select (N - 2) / 2 pairs of parents
@@ -47,5 +48,5 @@ class Creator:
         # Replace old population with new population
         self._population = new_population[:]
 
-    def _select_pairs_of_parents(self, num_pairs: int) -> List[Tuple[str, str]]:
+    def _select_pairs_of_parents(self, num_pairs: int) -> List[Tuple[Individual, Individual]]:
         return [self._selector.select_parents() for _ in range(num_pairs)]

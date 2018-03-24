@@ -1,6 +1,7 @@
 import unittest
 from random import seed
 
+from creator.individual import Individual
 from creator.selector import Selector
 
 
@@ -8,7 +9,7 @@ class TestSelector(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        population = ['10101', '11000', '01111']
+        population = [Individual('10101'), Individual('11000'), Individual('01111')]
         cls._selector = Selector(population)
 
     def test_fitness(self):
@@ -19,31 +20,31 @@ class TestSelector(unittest.TestCase):
     def test_select_random_individual(self):
         seed(1)
         random_individual = self._selector._select_random_individual()
-        self.assertEqual('10101', random_individual)
+        self.assertEqual(Individual('10101'), random_individual)
 
     def test_select_two_random_individuals(self):
         seed(1)
         first, second = self._selector._select_two_random_individuals()
-        self.assertEqual('10101', first)
-        self.assertEqual('01111', second)
+        self.assertEqual(Individual('10101'), first)
+        self.assertEqual(Individual('01111'), second)
 
     def test_select_parent(self):
         seed(1)
-        expected_parent = '01111'
+        expected_parent = Individual('01111')
         parent = self._selector._select_parent()
         self.assertEqual(expected_parent, parent)
 
     def test_select_parents(self):
         seed(1)
         first_parent, second_parent = self._selector.select_parents()
-        expected_first_parent = '01111'
-        expected_second_parent = '10101'
+        expected_first_parent = Individual('01111')
+        expected_second_parent = Individual('10101')
         self.assertEqual(expected_first_parent, first_parent)
         self.assertEqual(expected_second_parent, second_parent)
 
     def test_select_best_individuals(self):
         seed(1)
-        expected_best_individuals = ['10101', '01111']
+        expected_best_individuals = [Individual('10101'), Individual('01111')]
         best_individuals = self._selector.select_best_individuals(2)
         self.assertEqual(expected_best_individuals, best_individuals)
 
