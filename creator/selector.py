@@ -13,6 +13,12 @@ class Selector:
         second_parent = self._select_parent()
         return first_parent, second_parent
 
+    def select_best_individuals(self, num_individuals: int) -> List[str]:
+        fitnesses = {i: self._fitness(individual) for i, individual in enumerate(self._population)}
+        sorted_fitnesses = dict(sorted(fitnesses.items(), key=lambda t: t[1]))
+        best_individual_indices = list(sorted_fitnesses.keys())[-num_individuals:]
+        return [self._population[i] for i in best_individual_indices]
+
     def _select_parent(self) -> str:
         a, b = self._select_two_random_individuals()
         return a if self._fitness(a) >= self._fitness(b) else b
