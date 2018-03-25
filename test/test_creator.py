@@ -11,15 +11,14 @@ class TestCreator(unittest.TestCase):
     def setUpClass(cls):
         seed(1)
         cls._creator = Creator(population_size=10, string_size=5)
-        cls._creator._create_population()
 
     def test_create_population(self):
         seed(1)
         population_size = 3
         creator = Creator(population_size=population_size, string_size=5)
+        population = creator.create_population()
         expected_population = [Individual('00101'), Individual('11100'), Individual('10110')]
 
-        population = creator._population
         self.assertEqual(population_size, len(population))
         self.assertEqual(expected_population, population)
 
@@ -33,23 +32,25 @@ class TestCreator(unittest.TestCase):
         self.assertEqual(length, len(binary_string))
         self.assertEqual(expected_binary_string, binary_string)
 
-    def test_select_pairs_of_parents(self):
-        seed(1)
-        expected_pairs_of_parents = [(Individual('01111'), Individual('11100')),
-                                     (Individual('11100'), Individual('11010')),
-                                     (Individual('11001'), Individual('11100'))]
-        pairs_of_parents = self._creator._select_pairs_of_parents(3)
-        self.assertEqual(expected_pairs_of_parents, pairs_of_parents)
-
     def test_replace_population(self):
         seed(1)
-        expected_new_population = [Individual('01110'), Individual('11100'),
-                                   Individual('11100'), Individual('01010'),
-                                   Individual('11011'), Individual('01000'),
-                                   Individual('00100'), Individual('01111'),
+        expected_new_population = [Individual('00011'), Individual('01010'),
+                                   Individual('10110'), Individual('10100'),
+                                   Individual('01100'), Individual('01001'),
+                                   Individual('00111'), Individual('11001'),
                                    Individual('01011'), Individual('01111')]
-        self._creator._replace_population()
-        self.assertEqual(expected_new_population, self._creator._population)
+        population = self._creator.create_population()
+        new_population = self._creator._replace_population(population)
+        self.assertEqual(expected_new_population, new_population)
+
+    def test_evolve_population(self):
+        seed(1)
+        population = self._creator.create_population()
+        evolved_population = self._creator.evolve_population(population)
+
+        initial_average_fitness = self._creator.get_average_fitness(population)
+        average_fitness_after_evolution = self._creator.get_average_fitness(evolved_population)
+        self.assertGreater(average_fitness_after_evolution, initial_average_fitness)
 
 
 if __name__ == '__main__':

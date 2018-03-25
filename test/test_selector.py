@@ -48,6 +48,14 @@ class TestSelector(unittest.TestCase):
         best_individuals = self._selector.select_best_individuals(2)
         self.assertEqual(expected_best_individuals, best_individuals)
 
+    def test_select_pairs_of_parents(self):
+        seed(1)
+        expected_pairs_of_parents = [(Individual('01111'), Individual('10101')),
+                                     (Individual('10101'), Individual('11000')),
+                                     (Individual('01111'), Individual('10101'))]
+        pairs_of_parents = self._selector.select_pairs_of_parents(3)
+        self.assertEqual(expected_pairs_of_parents, pairs_of_parents)
+
 
 if __name__ == '__main__':
     unittest.main()

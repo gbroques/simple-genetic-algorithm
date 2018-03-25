@@ -10,6 +10,9 @@ class Selector:
     def __init__(self, population: List[Individual]):
         self._population = population
 
+    def select_pairs_of_parents(self, num_pairs: int) -> List[Tuple[Individual, Individual]]:
+        return [self.select_parents() for _ in range(num_pairs)]
+
     def select_parents(self) -> Tuple[Individual, Individual]:
         first_parent = self._select_parent()
         second_parent = self._select_parent()
