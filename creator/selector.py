@@ -18,6 +18,9 @@ class Selector:
         second_parent = self._select_parent()
         return first_parent, second_parent
 
+    def select_best_individual(self):
+        return self.select_best_individuals(1)[0]
+
     def select_best_individuals(self, num_individuals: int) -> List[Individual]:
         fitnesses = {i: individual.fitness for i, individual in enumerate(self._population)}
         sorted_fitnesses = dict(sorted(fitnesses.items(), key=lambda t: t[1]))

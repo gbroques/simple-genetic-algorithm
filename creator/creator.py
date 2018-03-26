@@ -64,3 +64,8 @@ class Creator:
     def get_average_fitness(population: List[Individual]) -> float:
         fitness_tracker = FitnessTracker(population)
         return fitness_tracker.get_average_fitness()
+
+    @staticmethod
+    def select_best_individual(population: List[Individual]) -> Individual:
+        selector = Selector(population)
+        return selector.select_best_individual()

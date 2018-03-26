@@ -1,12 +1,21 @@
-from creator import Creator
+from bisector import Bisector
 
 
 def main():
-    creator = Creator()
-    population = creator.create_population()
-    print("Initial fitness: " + str(creator.get_average_fitness(population)))
-    evolved_population = creator.evolve_population(population)
-    print("Final fitness: " + str(creator.get_average_fitness(evolved_population)))
+    string_size = prompt_for_string_size()
+    minimum_population_size = Bisector.find_minimum_population_size(string_size)
+    print("Finding minimum population size", end='')
+    print("Minimum population size: {}".format(minimum_population_size))
+
+
+def prompt_for_string_size():
+    string_size = 0
+    while string_size < 1:
+        try:
+            string_size = int(input("String size: "))
+        except ValueError as e:
+            pass
+    return string_size
 
 
 if __name__ == '__main__':

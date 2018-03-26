@@ -42,6 +42,12 @@ class TestSelector(unittest.TestCase):
         self.assertEqual(expected_first_parent, first_parent)
         self.assertEqual(expected_second_parent, second_parent)
 
+    def test_select_best_individual(self):
+        seed(1)
+        expected_best_individual = Individual('01111')
+        best_individual = self._selector.select_best_individual()
+        self.assertEqual(expected_best_individual, best_individual)
+
     def test_select_best_individuals(self):
         seed(1)
         expected_best_individuals = [Individual('10101'), Individual('01111')]
