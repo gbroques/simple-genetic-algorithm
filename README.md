@@ -2,9 +2,9 @@
 
 [![Build Status](https://travis-ci.org/gbroques/simple-genetic-algorithm.svg?branch=master)](https://travis-ci.org/gbroques/simple-genetic-algorithm)
 
-A simple genetic algorithm that uses crossover and mutation to solve the *one-max* problem.
+A simple genetic algorithm that uses crossover and mutation to solve the *onemax* problem.
 
-In evolutionary computation, the *one-max problem* is where to evolve binary strings by maximizing the amount of 1's in each string.
+In evolutionary computation, the *onemax problem* is where you evolve binary strings by maximizing the amount of 1's in each string.
 
 For example, given a set of binary strings of length 5, the goal is to evolve strings that look like `11111`, where each possible position contains a 1.
 
