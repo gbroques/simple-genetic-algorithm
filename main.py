@@ -3,6 +3,7 @@ from loading_indicator import LoadingIndicator
 
 
 def main():
+    """Finds the minimum population size to solve the onemax problem for a given string size."""
     string_size = prompt_for_string_size()
     loading_indicator = LoadingIndicator('Finding minimum population size', 1.0)
     loading_indicator.start()
