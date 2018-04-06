@@ -32,16 +32,17 @@ class Bisector:
             else:  # Failed to find global optimum 5/5 times
                 if lower_bound == upper_bound:  # Lower and upper bound converged
                     # Increment population size until it succeeds 5/5 times
-                    population_size += 1
+                    population_size += 2
                     lower_bound = population_size
                     upper_bound = population_size
                 elif found_upper_bound:  # Found upper bound and failed.
                     # Increase lower bound and population size.
                     population_size = cls._midpoint(lower_bound, upper_bound)
                     lower_bound = population_size
+                    if upper_bound - lower_bound == 2:
+                        lower_bound += 2
                 else:  # Failed without finding upper bound.
-                    # Double population size.
-                    population_size *= 2
+                    population_size *= 2  # Double population size
 
         return upper_bound
 
@@ -50,6 +51,11 @@ class Bisector:
         best_individual = creator.select_best_individual(population)
         return best_individual.fitness == string_size
 
+    @classmethod
+    def _midpoint(cls, a: int, b: int) -> int:
+        midpoint = round((a + b) / 2)
+        return midpoint if cls._is_even(midpoint) else midpoint - 1
+
     @staticmethod
-    def _midpoint(a: int, b: int) -> int:
-        return round((a + b) / 2)
+    def _is_even(num: int) -> bool:
+        return num % 2 == 0

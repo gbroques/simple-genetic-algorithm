@@ -12,6 +12,10 @@ class TestBisector(unittest.TestCase):
         minimum_population_size = Bisector.find_minimum_population_size(20)
         self.assertEqual(expected_minimum_population_size, minimum_population_size)
 
+        expected_minimum_population_size = 8
+        minimum_population_size = Bisector.find_minimum_population_size(50)
+        self.assertEqual(expected_minimum_population_size, minimum_population_size)
+
 
 if __name__ == '__main__':
     unittest.main()

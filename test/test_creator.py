@@ -10,7 +10,7 @@ class TestCreator(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         seed(1)
-        cls._creator = Creator(population_size=10, string_size=5)
+        cls._creator = Creator(population_size=6, string_size=5)
 
     def test_create_population(self):
         seed(1)
@@ -34,11 +34,9 @@ class TestCreator(unittest.TestCase):
 
     def test_replace_population(self):
         seed(1)
-        expected_new_population = [Individual('00011'), Individual('01010'),
-                                   Individual('10110'), Individual('10100'),
-                                   Individual('01100'), Individual('01001'),
-                                   Individual('00111'), Individual('11001'),
-                                   Individual('01011'), Individual('01111')]
+        expected_new_population = [Individual('11101'), Individual('11001'),
+                                   Individual('01100'), Individual('01100'),
+                                   Individual('10110'), Individual('11001')]
         population = self._creator.create_population()
         new_population = self._creator._replace_population(population)
         self.assertEqual(expected_new_population, new_population)
