@@ -4,7 +4,7 @@
 
 A simple genetic algorithm that uses crossover and mutation to solve the *onemax* problem.
 
-[Simple Genetic Algorithm](simple-genetic-algorithm.svg)
+![Simple Genetic Algorithm](simple-genetic-algorithm.svg)
 
 In evolutionary computation, the *onemax problem* is where you evolve binary strings by maximizing the amount of 1's in each string.
 
